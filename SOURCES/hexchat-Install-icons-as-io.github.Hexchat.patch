@@ -1,0 +1,46 @@
+From dac8ace90cffef656b1292c8d91648cc722c28fe Mon Sep 17 00:00:00 2001
+From: Patrick Griffis <tingping@tingping.se>
+Date: Mon, 25 Oct 2021 15:02:22 -0500
+Subject: [PATCH] Install icons as io.github.Hexchat
+
+This matches our app-id as the desktop-file spec recommends.
+
+This also fixes a bug where our notifications referred to this new
+name already.
+---
+ data/icons/meson.build                    | 2 ++
+ data/misc/io.github.Hexchat.desktop.in.in | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/data/icons/meson.build b/data/icons/meson.build
+index d7926e831259..710e0045f24b 100644
+--- a/data/icons/meson.build
++++ b/data/icons/meson.build
+@@ -1,9 +1,11 @@
+ icondir = join_paths(get_option('datadir'), 'icons/hicolor')
+ install_data(
+   'hexchat.png',
++  rename: 'io.github.Hexchat.png',
+   install_dir: join_paths(icondir, '48x48/apps')
+ )
+ install_data(
+   'hexchat.svg',
++  rename: 'io.github.Hexchat.svg',
+   install_dir: join_paths(icondir, 'scalable/apps')
+ )
+diff --git a/data/misc/io.github.Hexchat.desktop.in.in b/data/misc/io.github.Hexchat.desktop.in.in
+index 7bf6a9a8110c..5e00ce8f2539 100644
+--- a/data/misc/io.github.Hexchat.desktop.in.in
++++ b/data/misc/io.github.Hexchat.desktop.in.in
+@@ -4,7 +4,7 @@ GenericName=IRC Client
+ Comment=Chat with other people online
+ Keywords=IM;Chat;
+ Exec=@exec_command@
+-Icon=hexchat
++Icon=io.github.Hexchat
+ Terminal=false
+ Type=Application
+ Categories=GTK;Network;IRCClient;
+-- 
+2.41.0
+
