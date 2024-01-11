@@ -3,10 +3,13 @@
 Summary:   A popular and easy to use graphical IRC (chat) client
 Name:      hexchat
 Version:   2.16.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 URL:       https://hexchat.github.io
 Source:    https://dl.hexchat.net/hexchat/%{name}-%{version}.tar.xz
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=2051561
+Patch0:    hexchat-Install-icons-as-io.github.Hexchat.patch
 
 BuildRequires: gcc
 BuildRequires: meson
@@ -63,7 +66,7 @@ This package contains the development files for %{name}.
 %{_libdir}/hexchat/plugins/python.so
 %{_libdir}/hexchat/python
 %{_datadir}/applications/%{app_id}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.*
+%{_datadir}/icons/hicolor/*/apps/%{app_id}.*
 %{_datadir}/metainfo/%{app_id}.appdata.xml
 %{_datadir}/dbus-1/services/org.hexchat.service.service
 %{_mandir}/man1/*.gz
@@ -73,6 +76,10 @@ This package contains the development files for %{name}.
 %{_libdir}/pkgconfig/hexchat-plugin.pc
 
 %changelog
+* Mon Jul 10 2023 Debarshi Ray <rishi@fedoraproject.org> - 2.16.0-2
+- Unbreak notification icon
+Resolves: #2051561
+
 * Mon Dec 13 2021 Debarshi Ray <rishi@fedoraproject.org> - 2.16.0-1
 - Update to 2.16.0
 Resolves: #1965883
